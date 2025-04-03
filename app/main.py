@@ -12,6 +12,7 @@ from models import Employee, Department, Job
 from sqlalchemy import extract, func, case, and_
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
+from routers import dept_metrics
 
 app = FastAPI()
 
@@ -167,3 +168,5 @@ def get_quarterly_hires():
         raise HTTPException(status_code=500, detail=str(e))
     finally:
         db.close()    
+
+app.include_router(dept_metrics.router)
