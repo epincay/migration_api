@@ -24,6 +24,8 @@ API REST para migrar datos de archivos CSV a una base de datos PostgreSQL con ca
 - POST /upload/departments/
 - POST /upload/jobs/
 - POST /upload/employees/
+- GET /metrics/quarterly-hires/2021
+
 
 ## 📊 Ejemplo de uso
 curl -X 'POST' \
@@ -31,3 +33,7 @@ curl -X 'POST' \
   -H 'accept: application/json' \
   -H 'Content-Type: multipart/form-data' \
   -F 'file=@departments.csv;type=text/csv'
+
+curl -X 'GET' \
+  'http://127.0.0.1:8000/metrics/quarterly-hires/2021' \
+  -H 'accept: application/json'
