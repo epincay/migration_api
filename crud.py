@@ -11,6 +11,6 @@ def create_jobs(db: Session, jobs: list):
     db.bulk_insert_mappings(models.Job, jobs)
     db.commit()
 
-def create_employees(db: Session, hire_employees: list):
-    db.bulk_insert_mappings(models.Hire_Employees, hire_employees)
+def create_employees(db: Session, employees: list):
+    db.bulk_insert_mappings(models.Employee, employees)
     db.commit()
