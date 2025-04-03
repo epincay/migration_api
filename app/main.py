@@ -8,7 +8,7 @@ from typing import List
 from database import SessionLocal
 from datetime import datetime
 import crud
-import models
+import models import Employee, Department, Job
 from sqlalchemy import extract, func, case, and_
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -102,4 +102,68 @@ async def upload_employees(file: UploadFile = File(...), batch_size: int = 100):
             
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
-    
+
+# Pydantic model for response
+class QuarterlyHiresResponse(BaseModel):
+    department: str
+    job: str
+    q1: int
+    q2: int
+    q3: int
+    q4: int
+    total: int
+
+@app.get("/metrics/quarterly-hires/2021", response_model=List[QuarterlyHiresResponse])
+def get_quarterly_hires():
+    db = SessionLocal()
+    try:
+        results = db.query(
+            Department.name.label("department"),
+            Job.title.label("job"),
+            func.count(
+                case([(and_(
+                    extract('year', Employee.hire_date) == 2021,
+                    extract('quarter', Employee.hire_date) == 1
+                ), 1)], else_=None)
+            ).label("q1"),
+            func.count(
+                case([(and_(
+                    extract('year', Employee.hire_date) == 2021,
+                    extract('quarter', Employee.hire_date) == 2
+                ), 1)], else_=None)
+            ).label("q2"),
+            func.count(
+                case([(and_(
+                    extract('year', Employee.hire_date) == 2021,
+                    extract('quarter', Employee.hire_date) == 3
+                ), 1)], else_=None)
+            ).label("q3"),
+            func.count(
+                case([(and_(
+                    extract('year', Employee.hire_date) == 2021,
+                    extract('quarter', Employee.hire_date) == 4
+                ), 1)], else_=None)
+            ).label("q4"),
+            func.count().label("total")
+        )\
+        .join(Department, Employee.department_id == Department.id)\
+        .join(Job, Employee.job_id == Job.id)\
+        .filter(extract('year', Employee.hire_date) == 2021)\
+        .group_by(Department.name, Job.title)\
+        .order_by(Department.name, Job.title)\
+        .all()
+
+        return [{
+            "department": r.department,
+            "job": r.job,
+            "q1": r.q1,
+            "q2": r.q2,
+            "q3": r.q3,
+            "q4": r.q4,
+            "total": r.total
+        } for r in results]
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        db.close()    
