@@ -89,7 +89,7 @@ async def upload_employees(file: UploadFile = File(...), batch_size: int = 100):
         employees = []
         for row in reader:
             if len(row) == 5:
-                employees.append({"id": int(row[0]), "name": row[1], "date": datetime.fromisoformat(row[2].replace('Z', '+00:00')) if row[2].strip() else None, "campo1": int(row[3]) if row[3].strip() else 0, "campo2": int(row[4]) if row[4].strip() else 0})
+                employees.append({"id": int(row[0]), "name": row[1], "date": datetime.fromisoformat(row[2].replace('Z', '+00:00')) if row[2].strip() else None, "department_id": int(row[3]) if row[3].strip() else 0, "job_id": int(row[4]) if row[4].strip() else 0})
         
         db = SessionLocal()
         try:
