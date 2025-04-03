@@ -8,7 +8,7 @@ from typing import List
 from database import SessionLocal
 from datetime import datetime
 import crud
-import models import Employee, Department, Job
+from models import Employee, Department, Job
 from sqlalchemy import extract, func, case, and_
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
@@ -121,34 +121,34 @@ def get_quarterly_hires():
             Department.name.label("department"),
             Job.title.label("job"),
             func.count(
-                case([(and_(
-                    extract('year', Employee.hire_date) == 2021,
-                    extract('quarter', Employee.hire_date) == 1
-                ), 1)], else_=None)
+                case((and_(
+                    extract('year', Employee.date) == 2021,
+                    extract('quarter', Employee.date) == 1
+                ), 1), else_=None)
             ).label("q1"),
             func.count(
-                case([(and_(
-                    extract('year', Employee.hire_date) == 2021,
-                    extract('quarter', Employee.hire_date) == 2
-                ), 1)], else_=None)
+                case((and_(
+                    extract('year', Employee.date) == 2021,
+                    extract('quarter', Employee.date) == 2
+                ), 1), else_=None)
             ).label("q2"),
             func.count(
-                case([(and_(
-                    extract('year', Employee.hire_date) == 2021,
-                    extract('quarter', Employee.hire_date) == 3
-                ), 1)], else_=None)
+                case((and_(
+                    extract('year', Employee.date) == 2021,
+                    extract('quarter', Employee.date) == 3
+                ), 1), else_=None)
             ).label("q3"),
             func.count(
-                case([(and_(
-                    extract('year', Employee.hire_date) == 2021,
-                    extract('quarter', Employee.hire_date) == 4
-                ), 1)], else_=None)
+                case((and_(
+                    extract('year', Employee.date) == 2021,
+                    extract('quarter', Employee.date) == 4
+                ), 1), else_=None)
             ).label("q4"),
             func.count().label("total")
         )\
         .join(Department, Employee.department_id == Department.id)\
         .join(Job, Employee.job_id == Job.id)\
-        .filter(extract('year', Employee.hire_date) == 2021)\
+        .filter(extract('year', Employee.date) == 2021)\
         .group_by(Department.name, Job.title)\
         .order_by(Department.name, Job.title)\
         .all()
