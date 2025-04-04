@@ -18,13 +18,14 @@ API REST para migrar datos de archivos CSV a una base de datos PostgreSQL con ca
 1. Clonar el repositorio `git clone https://github.com/epincay/migration_api.git`
 2. cd migracion_api
 3. Instalar las dependencias: `pip install -r requirements.txt`
-4. Ejecutar la aplicación: `python app.py`
+4. Ejecutar la aplicación: `python /app/main.py`
 
 ## 📡 EndPoints 
 - POST /upload/departments/
 - POST /upload/jobs/
 - POST /upload/employees/
 - GET /metrics/quarterly-hires/2021
+- GET /metrics/above-average-hiring/2021
 
 
 ## 📊 Ejemplo de uso
@@ -37,3 +38,7 @@ curl -X 'POST' \
 curl -X 'GET' \
   'http://127.0.0.1:8000/metrics/quarterly-hires/2021' \
   -H 'accept: application/json'
+
+## Resultado
+
+![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
