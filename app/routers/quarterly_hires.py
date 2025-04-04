@@ -4,9 +4,9 @@ from sqlalchemy.orm import Session
 from typing import List
 from datetime import datetime
 from models import Department, Employee, Job
-from database import get_db
+from core.database import get_db
 from pydantic import BaseModel
-from database import SessionLocal
+from core.database import SessionLocal
 from sqlalchemy import extract, func, case, and_
 
 router = APIRouter(prefix="", tags=["metrics"])

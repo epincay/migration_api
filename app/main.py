@@ -1,7 +1,7 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File, HTTPException
-from database import engine, Base
-from database import SessionLocal
+from core.database import engine, Base
+from core.database import SessionLocal
 from routers import quarterly_hires, dept_metrics, upload_departments, upload_jobs, upload_employees
 
 app = FastAPI()

@@ -1,6 +1,6 @@
 # crud.py
 from sqlalchemy.orm import Session
-import models
+import models as models
 
 # Funciones para insertar datos
 def create_departments(db: Session, departments: list):

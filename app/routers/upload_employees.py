@@ -1,10 +1,9 @@
 from fastapi import UploadFile, File, APIRouter, Depends, HTTPException
-from database import engine, Base
+from core.database import engine, Base
 import csv
 import io
-from database import SessionLocal
-import crud
-from models import Employee
+from core.database import SessionLocal
+import repositories.repositories as repositories
 from datetime import datetime
 
 router = APIRouter(prefix="", tags=["upload"])
@@ -29,7 +28,7 @@ async def upload_employees(file: UploadFile = File(...), batch_size: int = 100):
         try:
             for i in range(0, len(employees), batch_size):
                 batch = employees[i:i + batch_size]
-                crud.create_employees(db, batch)
+                repositories.create_employees(db, batch)
             return {"message": f"Successfully uploaded {len(employees)} employees"}
         finally:
             db.close()

@@ -10,7 +10,6 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 Base = declarative_base()
 
-# Asegúrate de tener esta función
 def get_db():
     db = SessionLocal()
     try:
