@@ -41,4 +41,12 @@ curl -X 'GET' \
 
 ## Resultado
 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+![alt text][api]
+![alt text][upload_departments]
+![alt text][quarterly-hires]
+![alt text][above-average-hiring]
+
+[api]: https://github.com/epincay/migration_api/blob/main/img/api.jpg "Ejecución API"
+[upload_departments]: https://github.com/epincay/migration_api/blob/main/img/upload_departments.jpg "Carga de tablas desde CSV"
+[quarterly-hires]: https://github.com/epincay/migration_api/blob/main/img/quarterly-hires.jpg "Ejecución de contratados por puesto"
+[above-average-hiring]: https://github.com/epincay/migration_api/blob/main/img/above-average-hiring.jpg "Ejecución de contratados por departamento"
