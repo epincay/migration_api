@@ -1,6 +1,5 @@
 # migration_api
-Data Engineering Coding Challenge.
-API REST para migrar datos de archivos CSV a una base de datos PostgreSQL con capacidades de procesamiento por lotes.
+Data Engineering Coding. API REST para migrar datos de archivos CSV a una base de datos PostgreSQL con capacidades de procesamiento por lotes.
 
 ## ⚙️ Características
 - Subir archivos CSV para rellenar las tablas de la base de datos
