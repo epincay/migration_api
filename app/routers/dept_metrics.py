@@ -7,7 +7,7 @@ from models import Department, Employee
 from database import get_db
 from pydantic import BaseModel
 
-router = APIRouter(prefix="/api/metrics", tags=["metrics"])
+router = APIRouter(prefix="", tags=["metrics"])
 
 class DepartmentHiringStats(BaseModel):
     id: int
@@ -16,8 +16,8 @@ class DepartmentHiringStats(BaseModel):
 
 @router.get("/metrics/above-average-hiring/2021", 
            response_model=List[DepartmentHiringStats],
-           summary="Departments with hiring above average",
-           description="List of departments that hired more employees than the 2021 average")
+           summary="Departamentos con contrataciones por encima de la media",
+           description="Lista de departamentos que contrataron más empleados que el promedio de 2021")
 def get_departments_above_average_hiring(db: Session = Depends(get_db)):
     try:
         # Subquery for hires per department
