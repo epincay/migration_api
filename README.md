@@ -41,12 +41,23 @@ curl -X 'GET' \
 
 ## Resultado
 
+### Ejecución de API
 ![alt text][api]
+
+### Carga de tablas desde CSV
 ![alt text][upload_departments]
+
+### Ejecución de contratados por puesto
 ![alt text][quarterly-hires]
+
+### Ejecución de contratados por departamento
 ![alt text][above-average-hiring]
+
+### Ejemplo de tabla en base de datos PostgreSQL
+![alt text][database]
 
 [api]: https://github.com/epincay/migration_api/blob/main/img/api.jpg "Ejecución API"
 [upload_departments]: https://github.com/epincay/migration_api/blob/main/img/upload_departments.jpg "Carga de tablas desde CSV"
 [quarterly-hires]: https://github.com/epincay/migration_api/blob/main/img/quarterly-hires.jpg "Ejecución de contratados por puesto"
 [above-average-hiring]: https://github.com/epincay/migration_api/blob/main/img/above-average-hiring.jpg "Ejecución de contratados por departamento"
+[database]: https://github.com/epincay/migration_api/blob/main/img/database.jpg "Muestra de tabla en base de datos"
