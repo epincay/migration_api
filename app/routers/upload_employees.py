@@ -3,7 +3,7 @@ from core.database import engine, Base
 import csv
 import io
 from core.database import SessionLocal
-import repositories.repositories as repositories
+import repositories.employee_repo as repositories
 from datetime import datetime
 
 router = APIRouter(prefix="", tags=["upload"])
