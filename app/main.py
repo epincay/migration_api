@@ -1,8 +1,9 @@
 # main.py
 from fastapi import FastAPI, UploadFile, File, HTTPException
+from app.routers import department_repository
 from core.database import engine, Base
 from core.database import SessionLocal
-from routers import quarterly_hires, dept_metrics, upload_departments, upload_jobs, upload_employees
+from routers import quarterly_hires, upload_departments, upload_jobs, upload_employees
 
 app = FastAPI()
 
@@ -22,5 +23,5 @@ app.include_router(upload_employees.router)
 # API quarterly_hires
 app.include_router(quarterly_hires.router)    
 
-# API dept_metrics
-app.include_router(dept_metrics.router)
+# API department_repository
+app.include_router(department_repository.router)
